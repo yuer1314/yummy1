@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import svg from './comment.svg'
-import { Link } from 'react-router-dom'
+
 
 
 class FeedItem extends Component {
@@ -33,9 +33,9 @@ class FeedItem extends Component {
               </div>
             </div>
           </div>
-          <Link className="feed-comment-btn">
+          <div className="feed-comment-btn">
             <img src={svg} alt="comment" />
-          </Link>
+          </div>
         </div>
         <div style={this.styles.dishImg}
           className="feed-item-dish">
