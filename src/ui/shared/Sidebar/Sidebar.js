@@ -15,12 +15,23 @@ class Sidebar extends Component {
 
   closeBmMenu = () => {
     this.setState({
-      isOpen: true
+      isOpen: false
     })
   }
+  logout = () => {
+     localStorage.removeItem('userId')
+     this.props.dispatch({ type: 'LOG_OUT' })
+   }
   render() {
     let authStr = (
-      <div>登录|注册</div>
+      <div>
+          <Link to="/login" onClick={this.closeBmMenu} className="bm-user-left">
+            登录
+          </Link>
+          <Link to="/signup"  onClick={this.closeBmMenu} className="bm-user-right">
+            注册
+          </Link>
+        </div>
     )
 
     let userInfo = (
@@ -28,7 +39,7 @@ class Sidebar extends Component {
         <Link to="" className="bm-user-left">
           {this.props.currentUser}
         </Link>
-        <Link to="" className="bm-user-right">
+        <Link to="" onClick={this.logout} className="bm-user-right">
           退出
         </Link>
       </div>
