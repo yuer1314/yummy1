@@ -1,46 +1,52 @@
 import React, { Component } from 'react'
-import svg from './comment.svg'
+
+import { Link } from 'react-router-dom'
+import CommentIcon from '../../icons/CommentIcon'
 
 
 
 class FeedItem extends Component {
 
+  state = {
+    expand: false
+  }
 
-  imgUrl1 = 'http://media.haoduoshipin.com/yummy/dishes/dish3.jpg'
-  imgUrl2 = 'http://media.haoduoshipin.com/yummy/dishes/dish1.jpg'
-  styles = {
-    dishImg: {
-      'background' : `url(${this.imgUrl1}) no-repeat center center`,
-      'height': '130px',
-      'width': '90%',
-      'margin': '0 auto',
-      'marginTop': '20px'
-    }
+  toggleExpand = () => {
+    this.setState({
+      expand: !this.state.expand
+    })
   }
 
   render() {
     return(
-      <div className="feed-item">
-        <div className="feed-item-header">
-          <div className="feed-user">
-            <img src="http://media.haoduoshipin.com/yummy/default-avatar.png"  alt="avtar" />
-            <div className="feed-user-name-wrap">
-              <div className="feed-user-name">
-                {this.props.username}
-              </div>
-              <div className="feed-user-time">
-                2017年7月
-              </div>
+      <div className={`feed-item ${this.state.expand  ? 'expand' : ''}`}>
+        <div className="feed-expand">
+          评论内容
+        </div>
+        <div className="feed-card">
+          <div className="feed-card-header">
+            <div className="feed-user">
+              <img src="http://media.haoduoshipin.com/yummy/default-avatar.png"  alt="avtar" />
+                <div className="feed-user-info">
+                  <div className="feed-username">
+                    happypeter
+                  </div>
+                  <div className="feed-time">
+                    2017年
+                  </div>
+                </div>
+            </div>
+            <div className="feed-button"
+                onClick={this.toggleExpand}
+                to="" >
+                <CommentIcon color={ this.state.expand ? '#FE5196' : '#D0D0D0'}/>
             </div>
           </div>
-          <div className="feed-comment-btn">
-            <img src={svg} alt="comment" />
-          </div>
-        </div>
-        <div style={this.styles.dishImg}
-          className="feed-item-dish">
-        </div>
+          <Link style={{ 'backgroundImage': `url(http://media.haoduoshipin.com/yummy/dishes/dish1.jpg)`}}
+            to={`/dish/597be20c2bbfdbaa14bfa248`} className='feed-dish'>
+          </Link>
       </div>
+    </div>
     )
   }
 }

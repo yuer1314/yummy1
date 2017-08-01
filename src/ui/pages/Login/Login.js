@@ -23,7 +23,6 @@ class Login extends Component {
       this.props.dispatch({ type: 'SIGN_IN', username: res.data.username })
       this.props.history.push('/dashboard')
     }).catch(err => {
-      console.log(err.response.data.msg)
       const { msg } = err.response.data
       this.props.dispatch({ type: 'SHOW_ALERT', msg })
     })
